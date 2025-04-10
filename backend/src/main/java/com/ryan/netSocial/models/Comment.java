@@ -1,5 +1,4 @@
-package com.ryan.netSocial.models;
-
+package com.descomplica.FrameBlog.models;
 
 import jakarta.persistence.*;
 
@@ -8,27 +7,25 @@ import java.util.Date;
 @Entity
 @Table(name = "Comment")
 public class Comment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long commentId;
-    private String comment;
+    private String content;
     private Date date;
-
     @ManyToOne
-    private Long postId;
+    private User user;
     @ManyToOne
-    private Long userID;
+    private Post post;
 
     public Comment() {
     }
 
-    public Comment(final Long commentId, final String comment, final Date date, final Long postId, final Long userID) {
+    public Comment(Long commentId, String content, Date date, User user, Post post) {
         this.commentId = commentId;
-        this.comment = comment;
+        this.content = content;
         this.date = date;
-        this.postId = postId;
-        this.userID = userID;
+        this.user = user;
+        this.post = post;
     }
 
     public Long getCommentId() {
@@ -39,12 +36,12 @@ public class Comment {
         this.commentId = commentId;
     }
 
-    public String getComment() {
-        return comment;
+    public String getContent() {
+        return content;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Date getDate() {
@@ -55,19 +52,19 @@ public class Comment {
         this.date = date;
     }
 
-    public Long getPostId() {
-        return postId;
+    public User getUser() {
+        return user;
     }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
+    public void setUser(User userId) {
+        this.user = userId;
     }
 
-    public Long getUserID() {
-        return userID;
+    public Post getPost() {
+        return post;
     }
 
-    public void setUserID(Long userID) {
-        this.userID = userID;
+    public void setPost(Post post) {
+        this.post = post;
     }
 }

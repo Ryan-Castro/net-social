@@ -1,40 +1,43 @@
-package com.ryan.netSocial.models;
-
+package com.descomplica.FrameBlog.models;
 
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Post")
 public class Post {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long postID;
+    private Long postId;
     private String title;
-    private  String content;
+    private String content;
     private Date date;
     @ManyToOne
-    private User userID;
+    private User userId;
+    @OneToMany
+    private List<Tag> tagId;
 
     public Post() {
     }
 
-    public Post(final Long postID, final String title, final String content, final Date date, final User userID) {
-        this.postID = postID;
+    public Post(final Long postId, final String title, final String content,
+                final Date date, final User userId, final List<Tag> tagId) {
+        this.postId = postId;
         this.title = title;
         this.content = content;
         this.date = date;
-        this.userID = userID;
+        this.userId = userId;
+        this.tagId = tagId;
     }
 
-    public Long getPostID() {
-        return postID;
+    public Long getPostId() {
+        return postId;
     }
 
-    public void setPostID(Long postID) {
-        this.postID = postID;
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 
     public String getTitle() {
@@ -61,11 +64,19 @@ public class Post {
         this.date = date;
     }
 
-    public User getUserID() {
-        return userID;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setUserID(User userID) {
-        this.userID = userID;
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
+
+    public List<Tag> getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(List<Tag> tagId) {
+        this.tagId = tagId;
     }
 }

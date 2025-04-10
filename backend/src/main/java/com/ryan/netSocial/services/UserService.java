@@ -1,17 +1,14 @@
-package com.ryan.netSocial.services;
+package com.descomplica.FrameBlog.services;
 
-import com.ryan.netSocial.models.User;
+import com.descomplica.FrameBlog.models.User;
 
 import java.util.List;
 
 public interface UserService {
-    User save(User user);
 
+    User save(final User user);
     List<User> getAll();
-
-    User get(Long id);
-
-    User update(Long id, User user);
-
-    void delete(Long id);
+    User get(final Long id);
+    User update(final Long id, final User user);
+    void delete(final Long id);
 }

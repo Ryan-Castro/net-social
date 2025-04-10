@@ -1,37 +1,42 @@
-package com.ryan.FrameBlog.models;
+package com.descomplica.FrameBlog.models.v2;
 
-import com.descomplica.FrameBlog.deserializers.CustomAuthorityDeserializer;
 import com.descomplica.FrameBlog.enums.RoleEnum;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.management.relation.Role;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "User")
-public class User implements UserDetails {
+public class UserV2 implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
     private String name;
     private String email;
-    private String username;
     private String password;
     private RoleEnum role;
+    private String username;
 
-    public User() {
+    @OneToMany
+    private List<AddressV2> addresses;
+
+    public UserV2() {
     }
-    public User(final Long userId, final String name, final String email, final String username, final String password, final RoleEnum role) {
+
+    public UserV2(final Long userId, final String name, final String email,
+                  final String password, final RoleEnum role, final String username) {
         this.userId = userId;
         this.name = name;
         this.email = email;
-        this.username = username;
         this.password = password;
         this.role = role;
+        this.username = username;
     }
 
     public Long getUserId() {
@@ -58,8 +63,8 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
@@ -74,8 +79,23 @@ public class User implements UserDetails {
         this.role = role;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<AddressV2> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<AddressV2> addresses) {
+        this.addresses = addresses;
+    }
+
     @Override
-    @JsonDeserialize(using = CustomAuthorityDeserializer.class)
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.role == RoleEnum.ADMIN) {
             return List.of(
@@ -86,16 +106,6 @@ public class User implements UserDetails {
         return List.of(
                 new SimpleGrantedAuthority("ROLE_USER")
         );
-    }
-
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.username;
     }
 
     @Override

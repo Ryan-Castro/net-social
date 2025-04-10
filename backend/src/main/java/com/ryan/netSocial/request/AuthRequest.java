@@ -1,7 +1,6 @@
-package com.ryan.netSocial.request;
+package com.descomplica.FrameBlog.request;
 
 public class AuthRequest {
-
     final String username;
     final String password;
 

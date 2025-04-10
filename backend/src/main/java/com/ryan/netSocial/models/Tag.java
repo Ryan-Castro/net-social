@@ -1,12 +1,10 @@
-package com.ryan.netSocial.models;
-
+package com.descomplica.FrameBlog.models;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Tag")
 public class Tag {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long tagId;
@@ -15,7 +13,7 @@ public class Tag {
     public Tag() {
     }
 
-    public Tag(final Long tagId, final String name) {
+    public Tag(Long tagId, String name) {
         this.tagId = tagId;
         this.name = name;
     }

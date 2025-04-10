@@ -1,7 +1,6 @@
-package com.ryan.netSocial.response;
+package com.descomplica.FrameBlog.response;
 
 public class AuthResponse {
-
     final String token;
 
     public AuthResponse(String token) {

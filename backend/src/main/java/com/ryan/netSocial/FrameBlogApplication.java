@@ -1,13 +1,13 @@
-package com.ryan.netSocial;
+package com.descomplica.FrameBlog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NetSocialApplication {
+public class FrameBlogApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NetSocialApplication.class, args);
+		SpringApplication.run(FrameBlogApplication.class, args);
 	}
 
 }
